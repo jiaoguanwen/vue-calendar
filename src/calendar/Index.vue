@@ -2,11 +2,11 @@
   <div class="kl-calendar" :style="{width,height}">
     <title-bar :year="renderYear" :month="renderMonth" v-if="showTitle"></title-bar>
     <div class="kl-calendar_body">
-      <div class="kl-calendar_body-week-title">
-
+      <div class="kl-calendar_body-week-title"
+           :style="{backgroundColor: weekTitleBackgroundColor, borderLeft: weekTitleBorderLeft, borderRight: weekTitleBorderRight, borderBottom: weekTitleBorderBottom}">
         <div class="kl-calendar_body-week-title-item"
              v-for="weekDay in weekTitle"
-             :style="{textAlign:weekTitleAlign}"
+             :style="{textAlign: weekTitleAlign, fontSize: weekTitleFontSize, color: weekTitleColor, fontWeight: weekTitleFontWeight}"
         >{{weekDay}}
         </div>
       </div>
@@ -16,6 +16,7 @@
            v-for="week in weekCount">
         <div class="kl-calendar_body-day"
              :class="{'no-right-border':!border}"
+             :style="{borderBottom: weekDayBorderBottom}"
              v-for="day in 7"
              @click="dateClick(currentDate(week,day))"
         >
@@ -44,8 +45,8 @@
         default: '100%'
       },
       defaultDate: {
-        type: [Date,String],
-        default(){
+        type: [Date, String],
+        default() {
           return new Date()
         }
       },
@@ -97,6 +98,14 @@
         type: String,
         default: 'right'
       },
+      weekTitleFontSize: String,
+      weekTitleColor: String,
+      weekTitleFontWeight: String,
+      weekTitleBackgroundColor: String,
+      weekTitleBorderLeft: String,
+      weekTitleBorderRight: String,
+      weekTitleBorderBottom: String,
+      weekDayBorderBottom: String,
       weekCount: {
         type: Number,
         default: 6
