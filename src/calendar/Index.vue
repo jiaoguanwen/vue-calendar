@@ -19,6 +19,7 @@
              :style="{borderBottom: weekDayBorderBottom}"
              v-for="day in 7"
              @click="dateClick(currentDate(week,day))"
+             ref="dayItem"
         >
           <Item :source="currentDate(week,day)"></Item>
         </div>
